@@ -1,3 +1,5 @@
+import { deleteCar } from "./components/deleteCar";
+
 
 const BASE_URL = 'http://localhost:3000';
 const body = document.querySelector('body');
@@ -240,63 +242,63 @@ editCarBtn.addEventListener('click', async () => {
 
 })
 
-async function deleteCar(id) {
-    console.log(id)
-    const res = await fetch(`${BASE_URL}/garage/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+// async function deleteCar(id) {
+//     console.log(id)
+//     const res = await fetch(`${BASE_URL}/garage/${id}`, {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     });
 
-    const data = await res.json();
-    console.log(data);
+//     const data = await res.json();
+//     console.log(data);
 
-    if (data){
-        document.getElementById(`car${id}`).remove();
-    }
-}
+//     if (data){
+//         document.getElementById(`car${id}`).remove();
+//     }
+// }
 
 
-async function startCar(id) {
-    console.log(id);
-    const res = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
-        method: 'PATCH',
-        // body: JSON.stringify(editCar)
-    });
-    const resStart = await res.json();
-    console.log(resStart);
+// async function startCar(id) {
+//     console.log(id);
+//     const res = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
+//         method: 'PATCH',
+//         // body: JSON.stringify(editCar)
+//     });
+//     const resStart = await res.json();
+//     console.log(resStart);
 
-    const carImage = document.getElementById(`car-icon-${id}`);
-    carImage.classList.add("move");
-    let startTime = new Date().getTime();
-    const makeMove = function () {
-        let currTime = new Date().getTime();
-        let newPos = (0 + ((currTime - startTime) / 1000) * resStart.velocity);
-        carImage.style.left = newPos + 'px';
+//     const carImage = document.getElementById(`car-icon-${id}`);
+//     carImage.classList.add("move");
+//     let startTime = new Date().getTime();
+//     const makeMove = function () {
+//         let currTime = new Date().getTime();
+//         let newPos = (0 + ((currTime - startTime) / 1000) * resStart.velocity);
+//         carImage.style.left = newPos + 'px';
 
-        if (newPos < 1300 && carImage.classList.contains('move')) {
-            window.requestAnimationFrame(makeMove);
-        }
-        if (!carImage.classList.contains('move')) {
-            carImage.style.left = 0 + 'px';
-        }
-    }
-    makeMove();
-}
+//         if (newPos < 1300 && carImage.classList.contains('move')) {
+//             window.requestAnimationFrame(makeMove);
+//         }
+//         if (!carImage.classList.contains('move')) {
+//             carImage.style.left = 0 + 'px';
+//         }
+//     }
+//     makeMove();
+// }
 
-async function stopCar(id) {
-    console.log(id);
-    const res = await fetch(`${BASE_URL}/engine?id=${id}&status=stopped`, {
-        method: 'PATCH',
-        // body: JSON.stringify(editCar)
-    });
-    const resStop = await res.json();
-    console.log(resStop);
+// async function stopCar(id) {
+//     console.log(id);
+//     const res = await fetch(`${BASE_URL}/engine?id=${id}&status=stopped`, {
+//         method: 'PATCH',
+//         // body: JSON.stringify(editCar)
+//     });
+//     const resStop = await res.json();
+//     console.log(resStop);
 
-    const carImage = document.getElementById(`car-icon-${id}`);
-    carImage.classList.toggle("move");
-}
+//     const carImage = document.getElementById(`car-icon-${id}`);
+//     carImage.classList.toggle("move");
+// }
 
 
 // https://google.com/search?query=test+me%21&tbs=qdr%3Ay

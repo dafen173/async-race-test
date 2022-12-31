@@ -1,28 +1,25 @@
+import { BASE_URL } from "../frontend";
 
-
-export const deleteCar = (elemId) => {
-    console.log(elemId)
-    const element = document.getElementById(elemId)
-    element.remove()
+export async function deleteCar(id) {
     try {
-        fetch(`${BASE_URL}/garage/${elemId}`, {
-            method: 'delete'
-        })
+        console.log(id)
+        const res = await fetch(`${BASE_URL}/garage/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await res.json();
+
+        if (data){
+            document.getElementById(`car${id}`).remove();
+        }
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 
 
 
-// const deleteCar = (elemId) => {
-//     console.log(elemId)
-//     document.getElementById(elemId).remove()
-//     try {
-//         const response = fetch(`${BASE_URL}/garage/${elemId}`, {
-//             method: 'delete'
-//         })
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+

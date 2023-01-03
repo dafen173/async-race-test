@@ -1,30 +1,26 @@
 import { BASE_URL } from "../frontend";
 import { displayList } from "./paginationGarage";
 import { displayPagination } from "./paginationGarage";
+import { carList } from "../frontend";
+import { garageMarkup } from "./garageMarkup";
 
 export let currentPage = 1;
 let rows = 7;
 
-export async function getAllCars () {
+export async function getAllCars() {
+    // garageMarkup();
+
     const res = await fetch(`${BASE_URL}/garage`);
     const cars = await res.json();
     console.log(cars);
+    console.log('getAllCars');
+
+    // carList.innerHTML = 'ddddddd';
 
     displayList(cars, rows, currentPage);
     displayPagination(cars, rows);
     // let currentPage = 1;
     // let rows = 7;
-
-    // function displayList(arrData, rowPerPage, page) {
-    //     carList.innerHTML = '';
-    //     page--;
-    //     let start = rowPerPage * page;
-    //     let end = start + rowPerPage;
-    //     let paginatedData = arrData.slice(start, end);
-    //     paginatedData.forEach(element => {
-    //         carsRender(element);
-    //     });
-    // }
 
     // paginatedData.forEach(element => {
     //     carsRender(element);

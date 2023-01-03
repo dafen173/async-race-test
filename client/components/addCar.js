@@ -1,13 +1,10 @@
 import { BASE_URL } from "../frontend";
 import { nameField } from "../frontend";
 import { colorField } from "../frontend";
-import { carsRender } from "./carsRender";
+// import { carsRender } from "./carsRender";
+import { getAllCars } from "./getAllCars";
 
 export async function addCar() {
-    // const input = document.getElementById('name');
-
-    // const nameField = document.querySelector('#name')
-    // const colorField = document.querySelector('#color')
     const car = {
         name: nameField.value,
         color: colorField.value
@@ -24,7 +21,8 @@ export async function addCar() {
 
         const addedCar = await res.json();
         console.log(addedCar);
-        carsRender(addedCar);
+        // carsRender(addedCar);
+        getAllCars();
 
         nameField.value = '';
         colorField.value = '#000000';

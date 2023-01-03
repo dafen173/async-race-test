@@ -7,8 +7,8 @@ export function carsRender({id, name, color}) {
             <li class="">${name}</li>
         </ul>
         <div>
-            <button type="button" class="btn btn-primary start-car-btn">Start</button>
-            <button type="button" class="btn btn-primary stop-car-btn">Stop</button>
+            <button type="button" class="btn start-car-btn">Start</button>
+            <button type="button" class="btn stop-car-btn">Stop</button>
         </div>
 
         <div style='position: relative; height: 87px'>
@@ -91,10 +91,8 @@ export function carsRender({id, name, color}) {
         </div>
 
         <br>
-        <button type="button" class="btn btn-primary btn-edit">Select car</button>
-        <button type="button" class="btn btn-primary btn-delete">Delete car</button>
-        <br>
-        <br>
+        <button type="button" class="btn btn-edit">Select car</button>
+        <button type="button" class="btn btn-delete">Delete car</button>
         <br>
         <br>
     </div>

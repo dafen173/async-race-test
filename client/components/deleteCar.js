@@ -1,4 +1,5 @@
 import { BASE_URL } from "../frontend";
+import { getAllCars } from "./getAllCars";
 
 export async function deleteCar(id) {
     try {
@@ -14,6 +15,7 @@ export async function deleteCar(id) {
 
         if (data){
             document.getElementById(`car${id}`).remove();
+            // getAllCars();
         }
     } catch (error) {
         console.error(error);

@@ -3,15 +3,13 @@ import { STOP_CAR_PLACE } from "../frontend";
 import { winnerField } from "../frontend";
 import { winnerParent } from "../frontend";
 
-export const winner = [];
+export let winner = [];
+export let carsTime = [];
 
 
 export async function startCar(id) {
-    // winner = [];
-
     const res = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
-        method: 'PATCH',
-        // body: JSON.stringify(editCar)
+        method: 'PATCH'
     });
     const resStart = await res.json();
     console.log(resStart);
@@ -24,7 +22,7 @@ export async function startCar(id) {
 
     const makeMove = function () {
         let currTime = new Date().getTime();
-        let newPos = (0 + ((currTime - startTime) / 1000) * resStart.velocity);
+        let newPos = (0 + ((currTime - startTime) / 1000) * 10 * resStart.velocity);
         carImage.style.left = newPos + 'px';
 
         if (newPos <= STOP_CAR_PLACE && carImage.classList.contains('move')) {
@@ -39,16 +37,20 @@ export async function startCar(id) {
             console.log(id);
             winner.push(id);
             console.log(winner);
+
+            const finishTime = new Date().getTime();
+            const winnerTime = (finishTime - startTime) / 1000;
+            console.log('winner time is ' + winnerTime);
+            carsTime.push(winnerTime);
         }
 
-        if(id == winner[0]) {
-            // alert('winner is the ' + winner[0]);
-            let test = document.createElement('div');
-            test.id = 'winner';
-            test.innerHTML = `The winner ID is the ${winner[0]}`;
-            winnerParent.prepend(test);
-            // winnerField.focus();
-        }
+        // if(id == winner[0]) {
+        //     // alert('winner is the ' + winner[0]);
+        //     let test = document.createElement('div');
+        //     test.id = 'winner';
+        //     test.innerHTML = `The winner ID is the ${winner[0]}`;
+        //     winnerParent.prepend(test);
+        // }
     }
     makeMove();
 

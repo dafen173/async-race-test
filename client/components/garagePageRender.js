@@ -32,23 +32,5 @@ import { carList } from "../frontend";
 
 export const garagePageRender = () => {
     garageMarkup();
-    
-    // getAllCars();
-
-    // if(carList) {
-    //     carList.innerHTML = 'bbbbbbbbb';
-    //     console.log(carList);
-    // }
-
-    
     window.addEventListener('DOMContentLoaded', getAllCars);
-  
-
-
-    // const res = await fetch(`${BASE_URL}/garage`);
-    //     const carsPerPage = await res.json();
-    //     console.log(carsPerPage);
-
-    // displayList(carsPerPage, 7, 1);
-
 }

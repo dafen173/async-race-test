@@ -16,13 +16,15 @@ export const carHandler = (el) => {
     }
 
     if (el.target.classList.contains('start-car-btn')) {
+        el.target.setAttribute('disabled', '');
+        el.target.nextElementSibling.removeAttribute('disabled');
         const carId = el.target.parentElement.parentElement.id.slice(3);
         startCar(carId);
     }
 
     if (el.target.classList.contains('stop-car-btn')) {
-        // console.log(el.target.parentElement.parentElement.id);
-        // console.log(el.target.parentElement.parentElement.id.slice(3));
+        el.target.setAttribute('disabled', '');
+        el.target.previousElementSibling.removeAttribute('disabled');
         const carId = el.target.parentElement.parentElement.id.slice(3);
         stopCar(carId);
     }

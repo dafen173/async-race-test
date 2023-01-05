@@ -11,6 +11,10 @@ import { race } from "./components/race";
 import { createWinner } from "./components/createWinner";
 import { winner } from "./components/startCar";
 import { addToTable } from "./components/addToTable";
+import { resetRace } from "./components/resetRace";
+import { checkWinner } from "./helpers/checkWinner";
+import { sortTable } from "./components/sortTable";
+import { tableHandler } from "./components/tableHandler";
 
 
 export const BASE_URL = 'http://localhost:3000';
@@ -34,11 +38,15 @@ const garageBtn = document.getElementById('garage-btn');
 const garageBtnFromWinners = document.getElementById('garage-btn-from-winners');
 export const winnersPage = document.getElementById('winners-page');
 export const garagePage = document.getElementById('garage-page');
-const raceBtn = document.getElementById('race-btn');
+export const raceBtn = document.getElementById('race-btn');
+export const resetBtn = document.getElementById('reset-btn');
 export const winnerField = document.getElementById('winner');
 export const winnerParent = document.querySelector('.cars');
 export const winnersTable = document.querySelector('tbody');
-// export const headTable = document.querySelector('.thead');
+export const table = document.querySelector('table');
+
+
+
 
 addCarBtn.addEventListener('click', addCar);
 editCarBtn.addEventListener('click', editCar);
@@ -49,20 +57,19 @@ winnersBtnFromWinners.addEventListener('click', winnersMarkup);
 garageBtn.addEventListener('click', garagePageMarkup);
 garageBtnFromWinners.addEventListener('click', garagePageMarkup);
 raceBtn.addEventListener('click', race);
+resetBtn.addEventListener('click', resetRace);
+table.addEventListener('click', tableHandler);
 
 
 
-const interval = setInterval(check, 2000);
-function check() {
-    if(winner[0]) {
-        createWinner(winner[0]);
-        clearInterval(interval);
-        addToTable(winner[0]);
-        // winner.length = 0;
-    }
-}
+export let interval = setInterval(checkWinner, 2000);
 
-console.log(winnersTable);
 
+// document.addEventListener('DOMContentLoaded', sortTable);
+
+
+// export let storage = JSON.parse(localStorage.getItem("data")) || [];
+// console.log('local storage!!!')
+// console.log(storage);
 
 

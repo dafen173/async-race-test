@@ -10,7 +10,6 @@ import { garagePageMarkup } from "./components/garagePageMarkup";
 import { race } from "./components/race";
 import { createWinner } from "./components/createWinner";
 import { winner } from "./components/startCar";
-import { addToTable } from "./components/addToTable";
 import { resetRace } from "./components/resetRace";
 import { checkWinner } from "./helpers/checkWinner";
 import { sortTable } from "./components/sortTable";

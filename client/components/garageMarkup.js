@@ -91,9 +91,7 @@ export const garageMarkup = () => {
                         <th>Best time in seconds</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>

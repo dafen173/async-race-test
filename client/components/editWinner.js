@@ -3,19 +3,28 @@ import { BASE_URL } from "../frontend";
 
 
 export const editWinner = async (winnerId) => {
-    // console.log(carsTime);
 
     const resWinner = await fetch(`${BASE_URL}/winners/${winnerId}`);
     const winnerCarResults = await resWinner.json();
-    console.log(winnerCarResults);
+    // console.log(winnerCarResults);
+    let editWinnerCar = {};
 
-    const editWinnerCar = {
-        // name: editNameField.value,
-        // color: editColorField.value
-        id: winnerId,
-        wins: winnerCarResults.wins + 1,
-        time: carsTime[0]
+    if(carsTime[0] < winnerCarResults.time) {
+        editWinnerCar = {
+            id: winnerId,
+            wins: winnerCarResults.wins + 1,
+            time: carsTime[0]
+        }
+    } else {
+        editWinnerCar = {
+            id: winnerId,
+            wins: winnerCarResults.wins + 1,
+            time: winnerCarResults.time
+        }
     }
+
+    console.log('editWinner obj!!!');
+    console.log(editWinnerCar);
 
     const res = await fetch(`${BASE_URL}/winners/${winnerId}`, {
         method: 'PUT',

@@ -5,7 +5,7 @@ import { winner } from "./startCar";
 import { interval } from "../frontend";
 import { checkWinner } from "../helpers/checkWinner";
 import { createWinner } from "./createWinner";
-import { addToTable } from "./addToTable";
+import { offResetBtnAndAlert } from "./offResetBtnAndAlert";
 import { BASE_URL } from "../frontend";
 import { editWinner } from "./editWinner";
 
@@ -31,12 +31,12 @@ export const resetRace = () => {
                 console.log('resetRace works... winner id is not here yet!');
                 createWinner(winner[0]);
                 clearInterval(intervalAfterReset);
-                addToTable(winner[0]);
+                offResetBtnAndAlert(winner[0]);
             } else {
                 console.log('resetRace works... go to editWinter');
                 editWinner(winner[0]);
                 clearInterval(intervalAfterReset);
-                addToTable(winner[0]);
+                offResetBtnAndAlert(winner[0]);
             }
         }
     }

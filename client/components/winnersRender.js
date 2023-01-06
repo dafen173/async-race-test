@@ -1,5 +1,6 @@
 import { BASE_URL } from "../frontend";
 import { winnersTable } from "../frontend";
+import { insertCarImage } from "../helpers/insertCarImage";
 
 
 export async function winnersRender () {
@@ -18,7 +19,8 @@ export async function winnersRender () {
         let cell4 = row.insertCell(3);
         let cell5 = row.insertCell(4);
         cell1.innerHTML = element.id;
-        cell2.innerHTML = winners.color;
+        // cell2.innerHTML = winners.color;
+        cell2.innerHTML = insertCarImage(winners.color);
         cell3.innerHTML = winners.name;
         cell4.innerHTML = element.wins;
         cell5.innerHTML = element.time;

@@ -1,7 +1,7 @@
 import { winner } from "../components/startCar";
 import { createWinner } from "../components/createWinner";
 import { interval } from "../frontend";
-import { addToTable } from "../components/addToTable";
+import { offResetBtnAndAlert } from "../components/offResetBtnAndAlert";
 import { BASE_URL } from "../frontend";
 import { editWinner } from "../components/editWinner";
 import { carsTime } from "../components/startCar";
@@ -20,12 +20,12 @@ export async function checkWinner() {
             console.log('winner id is not here yet!');
             createWinner(winner[0]);
             clearInterval(interval);
-            // addToTable(winner[0]);
+            offResetBtnAndAlert(winner[0]);
         } else {
             console.log('go to editWinter');
             editWinner(winner[0]);
             clearInterval(interval);
-            addToTable(winner[0]);
+            offResetBtnAndAlert(winner[0]);
         }
     }
 }

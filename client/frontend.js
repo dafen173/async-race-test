@@ -1,20 +1,19 @@
-import { carHandler } from "./components/carHandler";
-import { getAllCars } from "./components/getAllCars";
-import { editCar } from "./components/editCar";
-import { addCar } from "./components/addCar";
-import { generateCars } from "./components/generateCars";
-import { garageMarkup } from "./components/garageMarkup";
-import { winnersMarkup } from "./components/winnersMarkup";
-import { garagePageRender } from "./components/garagePageRender";
-import { garagePageMarkup } from "./components/garagePageMarkup";
-import { race } from "./components/race";
-import { createWinner } from "./components/createWinner";
-import { winner } from "./components/startCar";
-import { resetRace } from "./components/resetRace";
-import { checkWinner } from "./helpers/checkWinner";
-import { sortTable } from "./components/sortTable";
-import { tableHandler } from "./components/tableHandler";
-
+import { carHandler } from './components/carHandler';
+import { getAllCars } from './components/getAllCars';
+import { editCar } from './components/editCar';
+import { addCar } from './components/addCar';
+import { generateCars } from './components/generateCars';
+import { garageMarkup } from './components/garageMarkup';
+import { winnersMarkup } from './components/winnersMarkup';
+import { garagePageRender } from './components/garagePageRender';
+import { garagePageMarkup } from './components/garagePageMarkup';
+import { race } from './components/race';
+import { createWinner } from './components/createWinner';
+import { winner } from './components/startCar';
+import { resetRace } from './components/resetRace';
+import { checkWinner } from './helpers/checkWinner';
+// import { sortTable } from "./components/sortTable";
+import { tableHandler } from './components/tableHandler';
 
 export const BASE_URL = 'http://localhost:3000';
 export const FINISH = window.innerWidth - 300;
@@ -44,9 +43,6 @@ export const winnerParent = document.querySelector('.cars');
 export const winnersTable = document.querySelector('tbody');
 export const table = document.querySelector('table');
 
-
-
-
 addCarBtn.addEventListener('click', addCar);
 editCarBtn.addEventListener('click', editCar);
 carList.addEventListener('click', carHandler);
@@ -59,16 +55,10 @@ raceBtn.addEventListener('click', race);
 resetBtn.addEventListener('click', resetRace);
 table.addEventListener('click', tableHandler);
 
-
-
 export let interval = setInterval(checkWinner, 2000);
 
-
 // document.addEventListener('DOMContentLoaded', sortTable);
-
 
 // export let storage = JSON.parse(localStorage.getItem("data")) || [];
 // console.log('local storage!!!')
 // console.log(storage);
-
-

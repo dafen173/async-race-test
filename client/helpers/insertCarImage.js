@@ -1,8 +1,4 @@
-
-
-
-export const insertCarImage = (color) =>
-    `
+export const insertCarImage = (color) => `
         <svg fill=${color} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 460.384 460.384" style="enable-background:new 0 0 460.384 460.384;" xml:space="preserve" width="100px" height="87px" >
             <g>
@@ -73,4 +69,6 @@ export const insertCarImage = (color) =>
             <g>
             </g>
         </svg>
-    `
+    `;
+
+export default insertCarImage;

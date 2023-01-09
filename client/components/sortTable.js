@@ -1,89 +1,50 @@
-
-
 export function sortTable(element) {
-    let rows, switching, i, x, y, shouldSwitch;
-    // table = document.getElementById("myTable");
-    const table = document.querySelector('table');
-    switching = true;
-    /*Make a loop that will continue until
-    no switching has been done:*/
-    while (switching) {
-      //start by saying: no switching is done:
-      switching = false;
-      rows = table.rows;
+  let rows; let switching; let i; let x; let y; let
+    shouldSwitch;
+  const table = document.querySelector('table');
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
 
-      console.log(rows);
+    if (element.classList.contains('ascending')) {
+      // console.log('ascending is here!!!');
 
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName('TD')[element.cellIndex];
+        y = rows[i + 1].getElementsByTagName('TD')[element.cellIndex];
 
-      if(element.classList.contains('ascending')){
-        console.log('ascending is here!!!');
-
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("TD")[element.cellIndex];
-          y = rows[i + 1].getElementsByTagName("TD")[element.cellIndex];
-          
-
-          
-            //check if the two rows should switch place:
-          if (Number(x.innerHTML) > Number(y.innerHTML)) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
         }
-
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-        }
-
-        // else {
-        //     console.log('ascending is NOT here!!!');
-        //       //check if the two rows should switch place:
-        //     if (Number(x.innerHTML) < Number(y.innerHTML)) {
-        //       //if so, mark as a switch and break the loop:
-        //       shouldSwitch = true;
-        //       break;
-        //     }
-        // }
-
       }
 
-      if(!element.classList.contains('ascending')){
-        console.log('ascending is NOT here!!!');
-
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("TD")[element.cellIndex];
-          y = rows[i + 1].getElementsByTagName("TD")[element.cellIndex];
-            //check if the two rows should switch place:
-          if (Number(x.innerHTML) < Number(y.innerHTML)) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
-        }
-
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-        }
-
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
       }
     }
+
+    if (!element.classList.contains('ascending')) {
+      // console.log('ascending is NOT here!!!');
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName('TD')[element.cellIndex];
+        y = rows[i + 1].getElementsByTagName('TD')[element.cellIndex];
+        if (Number(x.innerHTML) < Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
 }
+
+export default sortTable;

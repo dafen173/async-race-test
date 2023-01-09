@@ -1,69 +1,58 @@
-import { BASE_URL } from "../frontend";
-import { STOP_CAR_PLACE } from "../frontend";
-import { winnerField } from "../frontend";
-import { winnerParent } from "../frontend";
+/* eslint-disable no-console */
+/* eslint-disable import/no-cycle */
+import {
+  BASE_URL, STOP_CAR_PLACE,
+} from '../frontend';
 
-export let winner = [];
-export let carsTime = [];
-
+export const winner = [];
+export const carsTime = [];
 
 export async function startCar(id) {
-    const res = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
-        method: 'PATCH'
+  const res = await fetch(`${BASE_URL}/engine?id=${id}&status=started`, {
+    method: 'PATCH',
+  });
+  const resStart = await res.json();
+  // console.log(resStart);
+
+  const carImage = document.getElementById(`car-icon-${id}`);
+  carImage.classList.remove('stop');
+  carImage.classList.add('move');
+
+  const startTime = new Date().getTime();
+
+  const makeMove = () => {
+    const currTime = new Date().getTime();
+    const newPos = (0 + ((currTime - startTime) / 1000) * resStart.velocity);
+    carImage.style.left = `${newPos}px`;
+
+    if (newPos <= STOP_CAR_PLACE && carImage.classList.contains('move')) {
+      window.requestAnimationFrame(makeMove);
+    }
+
+    if (carImage.classList.contains('stop')) {
+      carImage.style.left = `${0}px`;
+    }
+
+    if (newPos >= STOP_CAR_PLACE - 1) {
+      winner.push(id);
+      // console.log(winner);
+
+      const finishTime = new Date().getTime();
+      const winnerTime = (finishTime - startTime) / 1000;
+      carsTime.push(winnerTime);
+    }
+  };
+  makeMove();
+
+  try {
+    const resDrive = await fetch(`${BASE_URL}/engine?id=${id}&status=drive`, {
+      method: 'PATCH',
     });
-    const resStart = await res.json();
-    console.log(resStart);
-
-    let carImage = document.getElementById(`car-icon-${id}`);
-    carImage.classList.remove('stop');
-    carImage.classList.add("move");
-
-    let startTime = new Date().getTime();
-
-    const makeMove = function () {
-        let currTime = new Date().getTime();
-        let newPos = (0 + ((currTime - startTime) / 1000) * 10 * resStart.velocity);
-        carImage.style.left = newPos + 'px';
-
-        if (newPos <= STOP_CAR_PLACE && carImage.classList.contains('move')) {
-            window.requestAnimationFrame(makeMove);
-        }
-
-        if (carImage.classList.contains('stop')) {
-            carImage.style.left = 0 + 'px';
-        }
-
-        if(newPos >= STOP_CAR_PLACE - 1) {
-            console.log(id);
-            winner.push(id);
-            console.log(winner);
-
-            const finishTime = new Date().getTime();
-            const winnerTime = (finishTime - startTime) / 1000;
-            console.log('winner time is ' + winnerTime);
-            carsTime.push(winnerTime);
-        }
-
-        // if(id == winner[0]) {
-        //     // alert('winner is the ' + winner[0]);
-        //     let test = document.createElement('div');
-        //     test.id = 'winner';
-        //     test.innerHTML = `The winner ID is the ${winner[0]}`;
-        //     winnerParent.prepend(test);
-        // }
-    }
-    makeMove();
-
-    try {
-        const resDrive = await fetch(`${BASE_URL}/engine?id=${id}&status=drive`, {
-            method: 'PATCH',
-            // body: JSON.stringify(editCar)
-        });
-        const resDriveJson = await resDrive.json();
-        console.log(resDriveJson);
-    } catch (error) {
-        console.log('ENGINE IS BROKEN!!!!!!!')
-        console.log(error);
-        carImage.classList.remove("move");
-    }
+    const resDriveJson = await resDrive.json();
+    console.log(resDriveJson);
+  } catch (error) {
+    console.log('ENGINE IS BROKEN!');
+    console.log(error);
+    carImage.classList.remove('move');
+  }
 }

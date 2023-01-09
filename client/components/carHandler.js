@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { deleteCar } from './deleteCar';
 import { selectCar } from './selectCar';
 import { startCar } from './startCar';

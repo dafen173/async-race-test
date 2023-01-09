@@ -1,21 +1,16 @@
-import { carsPerPageArr } from "./paginationGarage";
-import { startCar } from "./startCar";
-import { winner } from "./startCar";
-import { raceBtn } from "../frontend";
-import { resetBtn } from "../frontend";
-import { carsTime } from "./startCar";
+/* eslint-disable import/no-cycle */
+import { carsPerPageArr } from './paginationGarage';
+import { startCar, winner, carsTime } from './startCar';
+import { raceBtn, resetBtn } from '../frontend';
 
 export const race = () => {
-    winner.length = 0;
-    carsTime.length = 0;
-    // console.log('winner arr ' + winner);
-    raceBtn.setAttribute('disabled', '');
-    resetBtn.setAttribute('disabled', '');
-    carsPerPageArr.forEach((el) => {
-        startCar(el.id);
-    });
-}
+  winner.length = 0;
+  carsTime.length = 0;
+  raceBtn.setAttribute('disabled', '');
+  resetBtn.setAttribute('disabled', '');
+  carsPerPageArr.forEach((el) => {
+    startCar(el.id);
+  });
+};
 
-
-
-
+export default race;

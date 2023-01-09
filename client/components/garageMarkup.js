@@ -1,9 +1,8 @@
-import { body } from "../frontend";
+/* eslint-disable import/no-cycle */
+import { body } from '../frontend';
 
 export const garageMarkup = () => {
-    console.log('garageMarkup');
-
-    return body.innerHTML = `
+  body.innerHTML = `
     <div class="mt-4 ml-4" id='garage-page'>
         <div class="col-2">
             <div class="col-6"><h1 class="h1">ASYNC RACE</h1></div>
@@ -95,5 +94,7 @@ export const garageMarkup = () => {
             </table>
         </div>
     </div>
-    `
-}
+    `;
+};
+
+export default garageMarkup;

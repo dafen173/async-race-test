@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { BASE_URL, nameField, colorField } from '../frontend';
 import { getAllCars } from './getAllCars';
 

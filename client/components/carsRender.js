@@ -1,7 +1,8 @@
-import { carList, FINISH } from "../frontend";
+/* eslint-disable import/no-cycle */
+import { carList, FINISH } from '../frontend';
 
-export function carsRender({id, name, color}) {
-    carList.insertAdjacentHTML('beforeend', `
+export function carsRender({ id, name, color }) {
+  carList.insertAdjacentHTML('beforeend', `
     <div className="col-4" id="car${id}">
         <ul class="list-group" style='padding: 0;'>
             <li class="">${name}</li>
@@ -96,10 +97,7 @@ export function carsRender({id, name, color}) {
         <br>
         <br>
     </div>
-    `)
+    `);
 }
 
-
-
-
-
+export default carsRender;

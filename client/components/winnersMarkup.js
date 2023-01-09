@@ -1,18 +1,14 @@
-import { winnersPage } from "../frontend";
-import { garagePage } from "../frontend";
-// import { winnersTable } from "../frontend";
-import { winnersRender } from "./winnersRender";
-import { clearTable } from "./winnersClearTable";
-
+/* eslint-disable import/no-cycle */
+import { winnersPage, garagePage } from '../frontend';
+import { winnersRender } from './winnersRender';
+import { clearTable } from './winnersClearTable';
 
 export const winnersMarkup = () => {
-    clearTable();
-    winnersRender();
+  clearTable();
+  winnersRender();
 
-    garagePage.style.display = 'none';
-    winnersPage.style.display = 'block';
-}
+  garagePage.style.display = 'none';
+  winnersPage.style.display = 'block';
+};
 
-
-
-
+export default winnersMarkup;

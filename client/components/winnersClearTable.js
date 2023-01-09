@@ -1,7 +1,8 @@
-import { winnersTable } from "../frontend";
-
+/* eslint-disable import/no-cycle */
+import { winnersTable } from '../frontend';
 
 export function clearTable() {
-    winnersTable.innerHTML = '';
+  winnersTable.innerHTML = '';
 }
 
+export default clearTable;
